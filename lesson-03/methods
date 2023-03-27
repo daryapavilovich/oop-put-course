@@ -1,0 +1,43 @@
+#include <iostream>
+
+class A
+{
+private:
+    int a;
+public:
+    void set_a(int set)
+    {
+        a = set;
+    }
+
+    int get_a() const
+    {
+        return a;
+    }
+};
+
+class B
+{
+private:
+    int b;
+
+public:
+    void show_b(const A& a)
+    {
+        b = a.get_a();
+        std::cout << b << std::endl;
+    }
+};
+
+int main()
+{
+    A a;
+
+    a.set_a(10);
+
+    B b;
+
+    b.show_b(a);
+
+    return 0;
+}

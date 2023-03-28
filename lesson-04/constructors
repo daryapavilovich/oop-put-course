@@ -1,0 +1,39 @@
+#include <iostream> 
+#include <string>
+using namespace std;
+class number
+{
+
+public:
+    int max;
+    int min;
+    int middle;
+
+    number(int my_max) {
+        max = my_max > 0 ? my_max : 10;
+    }
+    number(int my_max, int my_min) : number(my_max) {
+        min = my_min > 0 && my_min < max ? my_min : 1;
+    }
+    number(int my_max, int my_min, int my_middle) : number(my_max, my_min) {
+        middle = my_middle < max && my_middle > min ? my_middle : 5;
+    }
+    void print() {
+        cout << "MAXIMUM:" <<endl<< max << endl << "MINIMUM:"<<endl << min <<endl<< "MIDDLE:" <<endl<< middle << endl<<"_______"<<endl<<endl;
+    }
+    void print_1() {
+        cout << "MAXIMUM:" << endl << max << endl << "MINIMUM:" << endl << min << endl << "________" << endl<<endl;
+    }
+    void print_2() {
+        cout << "MAXIMUM:" << endl << max << endl<<"________"<<endl<<endl;
+    }
+};
+int main() {
+
+    number a{ 7 };
+    a.print_2();
+    number b{ 7,8 };
+    b.print_1();
+    number c{ 7,8,9 };
+    c.print();
+}

@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include <memory>
+#include <sstream>
+#include <cassert>
+using namespace std;
+class Sequence {
+public:
+	virtual int Lenght() const = 0;
+	class Fake;
+};
+class FakeSequence :public Sequence {
+public:
+	int Lenght() const override {
+		return 100;
+	}
+};
+class Gene {
+private:
+
+	string name_;
+	shared_ptr <Sequence>seq_;
+public:
+	Gene(shared_ptr<Sequence>seq, const string name) :seq_(seq), name_(name) {};
+	string JSON() const {
+		stringstream ss;
+		ss << "{"
+			ss << "\" name \": <<name_<< "\" ";
+		ss<<"\" lenght\": "<< seq_->Lenght();
+		ss << "}";
+		return ss.str();
+	}
+	
+	
+};
+int main() {
+	shared_ptr<Sequence::Fake>
+		FakeSequence = make_shared<Sequence::Fake>();
+	Gene gene("BAFTS", FakeSequence);
+	cout << gene.JSON()
+		return();
+}

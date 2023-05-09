@@ -1,0 +1,95 @@
+/*original code:
+#include <iostream>
+#include <cmath>
+class Logarithm {
+public:
+Logarithm(double base, double number) {
+base_ = base;
+number_ = number;
+}
+double Calculate() const {
+return std::log(number_) / std::log(base_);
+}
+private:
+double base_;
+double number_;
+};
+*/
+#include <iostream>
+#include <cmath>
+#include <stdexcept>
+
+class Logarithm {
+public:
+    class InvalidBaseException : public std::exception {
+    public:
+        virtual const char* what() const noexcept {
+            return "Invalid base: cannot be 0 or negative";
+        }
+    };
+
+    class InvalidNumberException : public std::exception {
+    public:
+        virtual const char* what() const noexcept {
+            return "Invalid number: cannot be 0 or negative";
+        }
+    };
+
+    Logarithm(double base, double number) {
+        if (base <= 0) {
+            throw InvalidBaseException();
+        }
+        if (number <= 0) {
+            throw InvalidNumberException();
+        }
+        base_ = base;
+        number_ = number;
+    }
+
+    double Calculate() const {
+        double result;
+        try {
+            result = std::log(number_) / std::log(base_);
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Caught exception: " << e.what() << '\n';
+            throw;
+        }
+        return result;
+    }
+
+private:
+    double base_;
+    double number_;
+};
+
+int main() {
+    try {
+        Logarithm log1(0, 10);
+        double result = log1.Calculate();
+        std::cout << "Result: " << result << '\n';
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Caught exception: " << e.what() << '\n';
+    }
+
+    try {
+        Logarithm log2(2, -10);
+        double result = log2.Calculate();
+        std::cout << "Result: " << result << '\n';
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Caught exception: " << e.what() << '\n';
+    }
+
+    try {
+        Logarithm log3(2, 10);
+        double result = log3.Calculate();
+        std::cout << "Result: " << result << '\n';
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Caught exception: " << e.what() << '\n';
+    }
+
+    return 0;
+}

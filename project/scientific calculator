@@ -1,0 +1,150 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class Calculator {
+private:
+    double operand1;
+    double operand2;
+public:
+    Calculator() {
+        operand1 = 0.0;
+        operand2 = 0.0;
+    }
+    void operands(double o1, double o2) {
+        operand1 = o1;
+        operand2 = o2;
+    }
+    double addition() {
+        return operand1 + operand2;
+    }
+    double subtraction() {
+        return operand1 - operand2;
+    }
+    double multiplication() {
+        return operand1 * operand2;
+    }
+    double division() {
+        if (operand2 == 0) {
+            cout << "Error" << endl;
+            return 0
+        }
+        return operand1 / operand2;
+    }
+    double power() {
+        return pow(operand1, operand2);
+    }
+    double SquareRoot() {
+        return sqrt(operand1);
+    }
+    double logarithm() {
+        return log10(operand1);
+    }
+};
+int main() {
+    int number;
+    do {
+        cout << "Scientific Calculator" << endl;
+        cout << "---------------------"<< endl;
+        cout << "1) Addition"<<endl;
+        cout << "2) Subtraction"<<endl;
+        cout << "3) Multiplication"<<endl;
+        cout << "4) Division"<<endl;
+        cout << "5) Power"<<endl;
+        cout << "6) Square Root"<<endl;
+        cout << "7) Logarithm (base 10)"<<endl;
+        cout << "8) Exit"<<endl;
+        cout << "---------------------" << endl;
+        cout << "Enter your choice: ";
+        cin >> number;
+        Calculator calculator;
+        switch (number) {
+        case 1:
+            double op1, op2;
+            cout << "Enter operand 1: ";
+            cin >> op1;
+            cout << "Enter operand 2: ";
+            cin >> op2;
+            calculator.operands(op1, op2);
+            break;
+        case 2:
+            double operand_1, operand_2;
+            cout << "Enter operand 1: ";
+            cin >> operand_1;
+            cout << "Enter operand 2: ";
+            cin >> operand_2;
+            calculator.operands(operand_1, operand_2);
+            break;
+        case 3:
+            double operand__1, operand__2;
+            cout << "Enter operand 1: ";
+            cin >> operand__1;
+            cout << "Enter operand 2: ";
+            cin >> operand__2;
+            calculator.operands(operand__1, operand__2);
+            break;
+        case 4:
+            double operand___1, operand___2;
+            cout << "Enter operand 1: ";
+            cin >> operand___1;
+            cout << "Enter operand 2: ";
+            cin >> operand___2;
+            calculator.operands(operand___1, operand___2);
+            break;
+        case 5:
+            double operand1, operand2;
+            cout << "Enter operand 1: ";
+            cin >> operand1;
+            cout << "Enter operand 2: ";
+            cin >> operand2;
+            calculator.operands(operand1, operand2);
+            break;
+        case 6:
+            double op;
+            cout << "Enter number: ";
+            cin >> op;
+            calculator.operands(op, 0.0);
+            break;
+        case 7:
+            double operand;
+            cout << "Enter number: ";
+            cin >> operand;
+            calculator.operands(operand, 0.0);
+            break;
+        case 8:
+            cout << "Exiting..." << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please try again" << endl;
+            continue;
+        }
+        double result;
+        switch (number) {
+        case 1:
+            result = calculator.addition();
+            break;
+        case 2:
+            result = calculator.subtraction();
+            break;
+        case 3:
+            result = calculator.multiplication();
+            break;
+        case 4:
+            result = calculator.division();
+            break;
+        case 5:
+            result = calculator.power();
+            break;
+        case 6:
+            result = calculator.SquareRoot();
+            break;
+        case 7:
+            result = calculator.logarithm();
+            break;
+        }
+        cout << "Result: " << result << "\n\n";
+    } 
+    while (number != 0);  
+    return 0;
+}
